@@ -1,6 +1,6 @@
 const http = require('http');
 
-const CLOUDFLARE_WORKER_URL = 'https://your-cloudflare-worker-url/update';
+const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL||'https://your-cloudflare-worker-url/update';
 
 // Giả lập việc thay đổi dữ liệu trong DB
 function update_data_to_worker() {
