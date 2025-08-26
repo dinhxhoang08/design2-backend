@@ -2,12 +2,17 @@ const https = require('https');
 
 const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL||'https://your-cloudflare-worker-url/update';
 
+function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Giả lập việc thay đổi dữ liệu trong DB
 function update_data_to_worker() {
     return new Promise((resolve)=>{
         // Trong thực tế, bạn sẽ thay đổi dữ liệu sau một hành động nào đó (ví dụ: người dùng gửi tin nhắn)
         const newData = {
-            message: "Dữ liệu mới đã được thêm vào lúc: " + new Date().toISOString()
+            message: "Dữ liệu mới đã được thêm vào lúc: " + new Date().toLocaleString(),
+            id: randInt(1,1000000000),
         };
 
         const options = {
