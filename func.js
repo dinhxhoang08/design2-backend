@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 
 const CLOUDFLARE_WORKER_URL = process.env.CLOUDFLARE_WORKER_URL||'https://your-cloudflare-worker-url/update';
 
@@ -17,7 +17,7 @@ function update_data_to_worker() {
             }
         };
 
-        const req = http.request(CLOUDFLARE_WORKER_URL, options, (res) => {
+        const req = https.request(CLOUDFLARE_WORKER_URL, options, (res) => {
             console.log(`STATUS: ${res.statusCode}`);
             console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
             res.setEncoding('utf8');
